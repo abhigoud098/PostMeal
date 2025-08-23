@@ -1,0 +1,175 @@
+/* eseentials */
+
+* {
+  font-family: sans-serif;
+  color: #fff;
+}
+
+body {
+  background-color: #ffe8a1;
+  margin: 0;
+  padding: 0;
+  padding-top: 40px;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* styling */
+
+main {
+  display: flex;
+  height: calc(100vh - 40px);
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav {
+  background-color: rgba(210, 105, 30, 0.7);
+  border: 1px solid rgb(210, 105, 30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+nav a {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.newMeal {
+  height: 80vh;
+  background-color: #ffffff;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+}
+
+.seeRecipeDiv {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  background-color: #ffffff;
+  width: calc(100vw - 30vw);
+}
+
+h1 {
+  color: black;
+}
+
+/* login */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login input {
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #ffe8a1;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.login input:focus {
+  outline: none;
+}
+
+.login textarea {
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #ffe8a1;
+  color: #000;
+  transition: all 0.3s ease;
+  min-height: 200px;
+  min-width: 400px;
+}
+
+.login textarea:focus {
+  outline: none;
+}
+
+.login h1 {
+  margin: 0 ;
+}
+
+.login button {
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 3px rgb(0, 128, 0, 0.3);
+}
+
+.login input:hover,
+.login button:hover{
+  border-radius: 20px;
+}
+
+.login h1 {
+  color: white;
+}
+
+.login p a{
+  color: #000;
+  text-decoration: underline;
+}
+
+
