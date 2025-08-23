@@ -1,25 +1,79 @@
 import express from 'express'
+import mongoose from 'mongoose'
+import session from 'express-session'
+
+await mongoose.connect('mongodb+srv://abhigoud198484:snapcode09@cluster0.hkwptbc.mongodb.net/users')
 
 const app = express()
 const port = 3000
 
+app.use(express.urlencoded({ extended: true }))
+
+// Add session middleware
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false
+}))
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  pass: String
+})
+
+const dbWaleBhiya = mongoose.model('User', userSchema, 'userData')
+
 app.set('view engine', 'ejs')
 app.use(express.static('views'))
 
+// Middleware to make user available in all views
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null
+  next()
+})
+
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { user: res.locals.user });
 })
 app.get('/add', (req, res) => {
-  res.render('addMeal');
+  res.render('addMeal', { user: res.locals.user });
 })
 app.get('/myRes', (req, res) => {
-  res.render('index');
+  res.render('index', { user: res.locals.user });
 })
 app.get('/login', (req, res) => {
   res.render('login');
 })
 app.get('/signup', (req, res) => {
   res.render('signup');
+})
+
+// post
+
+app.post('/formsubmit', async (req, res) => {
+  const { name, email, pass } = req.body
+  const nayaUser = new dbWaleBhiya({ name, email, pass })
+  await nayaUser.save()
+  res.redirect('/login')
+})
+
+app.post('/login', async (req, res) => {
+  const { email, pass } = req.body
+  const user = await dbWaleBhiya.findOne({ email, pass })
+  if (user) {
+    req.session.user = user // Save user in session
+    res.redirect('/')
+  } else {
+    res.send('Invalid credentials')
+  }
+})
+
+// Optional: Logout route
+app.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login')
+  })
 })
 
 app.listen(port, () => {

@@ -172,4 +172,10 @@ h1 {
   text-decoration: underline;
 }
 
+.addMeal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 

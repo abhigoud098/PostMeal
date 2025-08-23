@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="addMeal">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/add">Add Meal</a></li>
+          <li><a href="/myRes">My Recipes</a></li>
+        </ul>
+      </nav>
+    </header>
     <form class="login" action="/add" method="POST">
-        <h1>Add Meal</h1>
-        <hr color="white" width="100%">
-        <br>
-        <input type="text" placeholder="Recipe Title" name="title">
-        <textarea name="Description">Description</textarea>
+      <h1>Add Meal</h1>
+      <hr color="white" width="100%" />
+      <br />
+      <input type="text" placeholder="Recipe Title" name="title" />
+      <textarea name="Description">Description</textarea>
+
+      <button type="submit">Post</button>
     </form>
-</body>
+  </body>
 </html>
