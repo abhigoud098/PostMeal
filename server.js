@@ -21,8 +21,14 @@ const userSchema = new mongoose.Schema({
   email: String,
   pass: String
 })
+const mealSchema = new mongoose.Schema({
+  title: String,
+  meal: String,
+  email: String
+})
 
 const dbWaleBhiya = mongoose.model('User', userSchema, 'userData')
+const mealWaleBhiya = mongoose.model('Meal', mealSchema, 'mealData')
 
 app.set('view engine', 'ejs')
 app.use(express.static('views'))
@@ -67,6 +73,14 @@ app.post('/login', async (req, res) => {
   } else {
     res.send('Invalid credentials')
   }
+})
+
+app.post('/add', async (req, res) => {
+  const { title, meal } = req.body
+  const email = req.session.user.email
+  const nayaMeal = new mealWaleBhiya({ title, meal, email })
+  await nayaMeal.save()
+  res.redirect('/')
 })
 
 // Optional: Logout route

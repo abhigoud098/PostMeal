@@ -8,6 +8,13 @@
   </head>
   <body>
     <header class="addMeal">
+      <div class="divLogin">
+        <% if (user) { %>
+        <h1><%= user.name %></h1>
+        <% } else { %>
+        <h1><a href="/login">Login</a></h1>
+        <% } %>
+      </div>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -16,14 +23,21 @@
         </ul>
       </nav>
     </header>
-    <form class="login" action="/add" method="POST">
-      <h1>Add Meal</h1>
-      <hr color="white" width="100%" />
-      <br />
-      <input type="text" placeholder="Recipe Title" name="title" />
-      <textarea name="Description">Description</textarea>
 
-      <button type="submit">Post</button>
-    </form>
+    <div class="divAddMeal">
+      <% if (user) { %>
+      <form class="login" action="/add" method="POST">
+        <h1>Add Meal</h1>
+        <hr color="white" width="100%" />
+        <br />
+        <input type="text" placeholder="Recipe Title" name="title" />
+        <textarea name="meal">Description</textarea>
+
+        <button type="submit">Post</button>
+      </form>
+      <% } else { %>
+      <h1>You must be logged-in, in order to add a meal.</h1>
+      <% } %>
+    </div>
   </body>
 </html>

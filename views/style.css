@@ -14,7 +14,6 @@ body {
 
 header {
   margin: 0;
-  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +22,7 @@ header {
   top: 0;
   height: 40px;
   padding: 0 10px;
+  padding-top: 10px;
   box-sizing: border-box;
 }
 
@@ -54,6 +54,11 @@ nav {
   height: 30px;
   border-radius: 5px;
   backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+nav:hover {
+  box-shadow: 0 0 0 5px rgba(210, 105, 30, 0.5);
 }
 
 nav ul {
@@ -172,10 +177,15 @@ h1 {
   text-decoration: underline;
 }
 
-.addMeal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.divLogin h1 {
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 5px;
+  background-color: rgb(210, 105, 30);
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
-
+.divLogin h1:hover {
+  box-shadow: 0 0 0 5px rgba(210, 105, 30, 0.3);
+}
