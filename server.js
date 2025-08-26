@@ -2,14 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import session from 'express-session'
 
-await mongoose.connect('mongodb+srv://abhigoud198484:snapcode09@cluster0.hkwptbc.mongodb.net/users')
+await mongoose.connect('mongodb+srv://abhigoud198484:snapcode09@cluster0.hkwptbc.mongodb.net/users')  // Connect Mongoose 
 
 const app = express()
 const port = 3000
+let allMeals;
+
 
 app.use(express.urlencoded({ extended: true }))
-
-// Add session middleware
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
@@ -39,20 +39,30 @@ app.use((req, res, next) => {
   next()
 })
 
+// find data by id
+function getRecipeById(id) {
+  const recipie = mealWaleBhiya.find(id);
+}
+
 app.get('/', (req, res) => {
-  res.render('index', { user: res.locals.user });
+  res.render('index', { user: res.locals.user, meals: allMeals });
 })
+app.get('/recipe/:id', async (req, res) => {
+  const id = req.params.id
+  const recipe = await mealWaleBhiya.findById(id);
+  res.json(recipe); // Now you are sending real JSON data
+});
 app.get('/add', (req, res) => {
   res.render('addMeal', { user: res.locals.user });
-})
-app.get('/myRes', (req, res) => {
-  res.render('index', { user: res.locals.user });
 })
 app.get('/login', (req, res) => {
   res.render('login');
 })
 app.get('/signup', (req, res) => {
   res.render('signup');
+})
+app.get('/myRes', (req, res) => {
+  res.render('myRecipe', { user: res.locals.user });
 })
 
 // post
@@ -80,8 +90,16 @@ app.post('/add', async (req, res) => {
   const email = req.session.user.email
   const nayaMeal = new mealWaleBhiya({ title, meal, email })
   await nayaMeal.save()
+  await refreshAllMeals()
   res.redirect('/')
 })
+
+async function refreshAllMeals() {
+  const meals = await mealWaleBhiya.find({})
+  allMeals = meals;
+}
+
+await refreshAllMeals()
 
 // Optional: Logout route
 app.get('/logout', (req, res) => {
@@ -91,5 +109,5 @@ app.get('/logout', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`app listening on port ${port}`)
+  console.log(`app listening on port ${port}`) 
 })

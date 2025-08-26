@@ -26,10 +26,30 @@
     <main>
       <div class="newMeal">
         <h1>New Meals</h1>
+        <ul>
+          <% meals.forEach(meal => { %>
+            <li onclick="showRecipe('<%= meal._id %>')">
+              <%= meal.title %>
+            </li>
+          <% }) %>
+        </ul>
       </div>
       <div class="seeRecipeDiv">
         <h1>Meals</h1>
+        <div id="seeRecipieDiv" class="seeRecipieDiv">
+          <h2 id="title"></h2>
+          <p id="description"></p>
+        </div>
       </div>
     </main>
   </body>
+
+  <script>
+  async function showRecipe(id) {
+    const response = await fetch(`/recipe/${id}`);
+    const data = await response.json(); // Parse JSON from response
+    document.getElementById("title").innerText = data.title; // Show title
+    document.getElementById("description").innerText = data.meal; // Show data
+  }
+  </script>
 </html>

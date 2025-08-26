@@ -79,23 +79,59 @@ nav a:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+h1 {
+  color: black;
+  color: rgb(210, 105, 30);
+}
+
 .newMeal {
   height: 80vh;
   background-color: #ffffff;
   width: 20vw;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  padding-top: 10px;
+  border-radius: 10px;
+}
+
+.newMeal h1 {
+  flex: none;
+  margin: 0 auto;
+}
+
+.newMeal ul {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  margin: 0;
+}
+
+.newMeal li {
+  color: black;
+  display: block;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.newMeal li:hover {
+  background-color: #f0f0f0;
 }
 
 .seeRecipeDiv {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 80vh;
   background-color: #ffffff;
   width: calc(100vw - 30vw);
+  border-radius: 10px;
 }
-
-h1 {
+.seeRecipieDiv * {
   color: black;
 }
 
@@ -188,4 +224,9 @@ h1 {
 
 .divLogin h1:hover {
   box-shadow: 0 0 0 5px rgba(210, 105, 30, 0.3);
+}
+
+.seeRecipieDiv {
+  height: 75%;
+  width: 95%;
 }
