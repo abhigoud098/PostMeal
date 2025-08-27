@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
       <div class="divLogin">
         <% if (user) { %>
-        <h1><%= user.name %></h1>
+        <h1><a href="/logout"><%= user.name %></a></h1>
         <% } else { %>
         <h1><a href="/login">Login</a></h1>
         <% } %>
@@ -28,15 +35,13 @@
         <h1>New Meals</h1>
         <ul>
           <% meals.forEach(meal => { %>
-            <li onclick="showRecipe('<%= meal._id %>')">
-              <%= meal.title %>
-            </li>
+          <li onclick="showRecipe('<%= meal._id %>')"><%= meal.title %></li>
           <% }) %>
         </ul>
       </div>
       <div class="seeRecipeDiv">
         <h1>Meals</h1>
-        <div id="seeRecipieDiv" class="seeRecipieDiv">
+        <div id="seeRecipeDiv" class="seeRecipeDiv">
           <h2 id="title"></h2>
           <p id="description"></p>
         </div>
@@ -45,11 +50,11 @@
   </body>
 
   <script>
-  async function showRecipe(id) {
-    const response = await fetch(`/recipe/${id}`);
-    const data = await response.json(); // Parse JSON from response
-    document.getElementById("title").innerText = data.title; // Show title
-    document.getElementById("description").innerText = data.meal; // Show data
-  }
+    async function showRecipe(id) {
+      const response = await fetch(`/recipe/${id}`);
+      const data = await response.json(); // Parse JSON from response
+      document.getElementById("title").innerText = data.title; // Show title
+      document.getElementById("description").innerText = data.meal; // Show data
+    }
   </script>
 </html>

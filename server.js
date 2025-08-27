@@ -52,6 +52,16 @@ app.get('/recipe/:id', async (req, res) => {
   const recipe = await mealWaleBhiya.findById(id);
   res.json(recipe); // Now you are sending real JSON data
 });
+app.get('/del/:id', async (req, res) => {
+  const id = req.params.id
+  const deletedRecipe = await mealWaleBhiya.findByIdAndDelete(id);
+  await refreshAllMeals(); // Refresh allMeals after deletion
+  if (deletedRecipe) {
+    res.json({ message: "Recipe deleted successfully.", id });
+  } else {
+    res.json({ message: "Recipe not found or already deleted.", id });
+  }
+});
 app.get('/add', (req, res) => {
   res.render('addMeal', { user: res.locals.user });
 })
@@ -61,8 +71,15 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
   res.render('signup');
 })
-app.get('/myRes', (req, res) => {
-  res.render('myRecipe', { user: res.locals.user });
+app.get('/myRes', async (req, res) => {
+  const user = req.session.user;
+  if (user) {
+    const email = user.email
+    const myMeals = await mealWaleBhiya.find({email: email})
+    res.render('myRecipe', { user: res.locals.user, meals: myMeals });
+  } else {
+    res.send('You must be Login')
+  }
 })
 
 // post
