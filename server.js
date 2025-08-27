@@ -5,7 +5,7 @@ import session from 'express-session'
 await mongoose.connect('mongodb+srv://abhigoud198484:snapcode09@cluster0.hkwptbc.mongodb.net/users')  // Connect Mongoose 
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 let allMeals;
 
 
