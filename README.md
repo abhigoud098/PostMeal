@@ -1,4 +1,4 @@
-🚀 Project Name
+🚀 Post Meal
 
 A full-stack web application built with Node.js, Express.js, MongoDB, and Mongoose.
 The project includes Create, Read, and Delete functionality and is now fully working & open-source.
